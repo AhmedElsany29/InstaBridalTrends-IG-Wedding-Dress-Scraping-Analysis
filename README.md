@@ -1,137 +1,112 @@
-# InstaBridalTrends: IG Wedding Dress Scraping & Analysis
+# InstaBridalTrends-IG-Wedding-Dress-Scraping-Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/) [![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-green)](https://pandas.pydata.org/) [![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7%2B-orange)](https://matplotlib.org/) [![Instaloader](https://img.shields.io/badge/Instaloader-4.9%2B-purple)](https://instaloader.github.io/)
 
-An end-to-end Python tool to **scrape Instagram posts** for wedding dress trends and **analyze** them using NLP and data visualization. Focuses on Egyptian bridal fashion: extract keywords, classify styles (e.g., Princess, Modest), detect fabrics, and visualize engagement/modesty trends.
+An end-to-end Python toolkit for **scraping Instagram wedding dress posts** and **analyzing trends** with NLP and visualizations. Targets Egyptian bridal fashion: extracts keywords, classifies styles (e.g., Princess, Modest), detects fabrics, and charts engagement/modesty evolution.
 
-Built with Python, Pandas, Matplotlib, and Instaloader for ethical scraping.
+Powered by Python, Pandas, Matplotlib, and Instaloader for ethical, automated data collection.
 
 ## 🚀 Features
-- **Automated Scraping**: Collect public Instagram posts from hashtags like `#bridalegypt`, `#weddingdress` (up to 100+ posts).
-- **Data Cleaning & NLP**: Extract top words from captions/comments, classify dress styles (Princess, Mermaid, Modest), detect fabrics (Chiffon, Lace).
-- **Trend Analysis**: Time-series trends for modesty ratio, engagement by style, keyword frequency (log-scale charts).
-- **Visualizations**: Interactive dashboards with heatmaps, bar charts, and statistical summaries.
-- **Output**: Clean CSV datasets + high-res PNG charts for reports/research.
-- **Ethical**: Respects Instagram ToS (public data only, rate limits, no private accounts).
+- **Instagram Scraping**: Fetch public posts from hashtags (#bridalegypt, #weddingdress) with captions, likes, comments, and metadata.
+- **NLP Processing**: Identify top words from captions/comments, sentiment analysis, and style/fabric classification.
+- **Trend Detection**: Yearly trends in modesty ratios, keyword frequencies, and engagement by style.
+- **Visual Dashboards**: Log-scale keyword charts, heatmaps (Style × Keyword), and comparative panels.
+- **Outputs**: Processed CSVs + publication-ready PNGs for research/reports.
+- **Ethical Focus**: Public data only; built-in rate limiting to comply with Instagram ToS.
 
-## 📊 Demo Output
-- **Keyword Distribution**: Log-scale horizontal bar chart of top 30 keywords (e.g., "تحفة", "فستان").
-- **Style Heatmap**: Engagement matrix (Style × Keyword).
-- **Top Words**: Separate charts for captions vs. comments.
-- **Trends**: Multi-panel dashboard for yearly modesty/engagement evolution.
+## 📊 Sample Outputs
+- **Keyword Log Chart**: Horizontal bars for top 30 terms (e.g., "تحفة", "فستان") on log scale.
+- **Style Heatmap**: Cross-analysis of engagement across styles and keywords.
+- **Caption vs. Comment Words**: Side-by-side top-10 frequency bars.
+- **Trend Dashboard**: Multi-panel yearly summaries with stats tables.
 
-Example Chart: [Keyword Distribution (Log Scale)](keyword_distribution_log_en.png)
+![Keyword Distribution Example](keyword_distribution_log_en.png)
 
-## 🛠️ Installation
-1. Clone the repo:
+## 🛠️ Quick Start
+1. **Clone & Setup**:
    ```
-   git clone https://github.com/ahmedelsany29/InstaBridalTrends.git
-   cd InstaBridalTrends
-   ```
-
-2. Create virtual environment (recommended):
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```
+   git clone https://github.com/ahmedelsany29/InstaBridalTrends-IG-Wedding-Dress-Scraping-Analysis.git
+   cd InstaBridalTrends-IG-Wedding-Dress-Scraping-Analysis
+   python -m venv venv && source venv/bin/activate  # Windows: venv\Scripts\activate
    pip install -r requirements.txt
    ```
-   
-   **requirements.txt** (create this file):
-   ```
-   pandas>=2.0
-   numpy>=1.24
-   matplotlib>=3.7
-   seaborn>=0.12
-   instaloader>=4.9
-   arabic-reshaper>=3.0
-   python-bidi>=0.4
-   nltk>=3.8
-   scikit-learn>=1.3
+
+2. **Scrape Data**:
+   ```bash
+   python scrape_instagram.py  # Outputs: instagram_wedding_data_YYYYMMDD.csv
    ```
 
-## 📖 Usage
+3. **Run Analysis**:
+   ```bash
+   python analyze_wedding_data.py  # Generates CSVs + charts
+   ```
 
-### 1. Scraping Instagram Data
-Run the scraping script to collect fresh data:
-```bash
-python scrape_instagram.py
+**requirements.txt**:
 ```
-- **Input**: Hashtags list (default: `['bridalegypt', 'weddingdress', 'egyptianbride']`).
-- **Output**: `instagram_wedding_data_YYYYMMDD.csv` (captions, likes, comments, hashtags).
-- **Params**: Edit `max_posts=100` in the script for more data.
-- **Note**: Requires Instagram login (optional for public data). Use a test account to avoid bans.
-
-### 2. Analysis & Visualization
-Load scraped CSV and run analysis:
-```bash
-python analyze_wedding_data.py
-```
-- **Input**: CSV from scraping (or use sample: `sample_wedding_data.csv`).
-- **Output**:
-  - Processed CSV: `research_dataset_with_top_words.csv` (with `top_caption_word`, `dress_style_category`, etc.).
-  - Charts: `keyword_distribution_log_en.png`, `top_words_caption_vs_comment.png`, `impact_heatmap_en.png`.
-- **Customization**: Edit `hashtags` or `style_keywords` dict in the script for your focus (e.g., add "قمر" for beauty keywords).
-
-### Example Workflow
-```python
-# Quick run in Jupyter (wedding_dress_analysis_FINAL.ipynb)
-import pandas as pd
-df = pd.read_csv('instagram_wedding_data.csv')
-# Run cells for cleaning, NLP, and plots
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+seaborn>=0.12
+instaloader>=4.9
+arabic-reshaper>=3.0
+python-bidi>=0.4
+nltk>=3.8
+scikit-learn>=1.3
 ```
 
-## 📁 Data Structure
-The output CSV includes:
+## 📁 File Structure
+```
+InstaBridalTrends-IG-Wedding-Dress-Scraping-Analysis/
+├── scrape_instagram.py          # Data collection
+├── analyze_wedding_data.py      # NLP + Viz
+├── wedding_dress_analysis_FINAL.ipynb  # Jupyter demo
+├── sample_wedding_data.csv      # Test dataset
+├── requirements.txt             # Dependencies
+├── keyword_distribution_log_en.png  # Sample chart
+└── README.md                    # This file
+```
+
+**Key Columns in Output CSV**:
 | Column | Description |
 |--------|-------------|
-| `year` | Post year (extracted from date) |
-| `top_caption_word` | Most frequent meaningful word in caption (e.g., "تحفة") |
-| `top_comment_word` | Most frequent meaningful word in comments (e.g., "بكام") |
-| `dress_style_category` | Classified style (Princess, Modest, Other) |
-| `fabrics` | Detected fabrics (e.g., ["Lace", "Chiffon"]) |
+| `year` | Extracted post year |
+| `top_caption_word` | Dominant word in caption (e.g., "تحفة") |
+| `top_comment_word` | Dominant word in comments (e.g., "بكام") |
+| `dress_style_category` | Auto-classified (Princess, Modest, etc.) |
+| `fabrics` | Detected materials (e.g., "Lace, Chiffon") |
 | `total_engagement` | Likes + Comments + Shares |
-| `likes`, `post_comments_total`, `shares` | Raw metrics |
 
-## 🔍 Key Insights (From Sample Data)
-- **Top Keywords**: "تحفة" (masterpiece), "فستان" (dress), "محتشمة" (modest).
-- **Trends**: Modesty ratio rising from 20% (2018) to 35% (2024).
-- **Engagement**: "Luxury" styles get 2x more likes than "Other".
+## 🔍 Insights from Sample Data
+- **Popular Terms**: "تحفة" leads keywords; "محتشمة" rising in modest styles.
+- **Engagement Boost**: Luxury/Embellished posts average 2x interactions.
+- **Trend Shift**: Modesty mentions up 15% from 2018–2024.
 
-## ⚠️ Ethical & Legal Notes
-- **Instagram ToS**: Only public posts; no private data. Use delays (e.g., `time.sleep(5)`) to avoid rate limits.
-- **Privacy**: Anonymize user data; comply with GDPR.
-- **Rate Limits**: Instaloader handles this, but monitor for blocks.
-- **Alternatives**: For production, use official Instagram Graph API (requires app approval).
+## ⚠️ Ethical Guidelines
+- **Instagram Compliance**: Public posts only; add `time.sleep(5)` for politeness.
+- **Privacy**: No user IDs stored; anonymize outputs.
+- **Limits**: Max 100 posts per run; use proxies for scale.
+- **Alternatives**: Switch to Instagram Graph API for official access.
 
 ## 🤝 Contributing
-1. Fork the repo.
-2. Create a branch: `git checkout -b feature/add-new-style`.
-3. Commit changes: `git commit -m 'Add mermaid style classification'`.
-4. Push: `git push origin feature/add-new-style`.
-5. Open a Pull Request.
+1. Fork & branch: `git checkout -b feature/add-sentiment-model`.
+2. Commit: `git commit -m 'Enhance Arabic sentiment analysis'`.
+3. PR: Open pull request with details.
 
-Ideas: Add Selenium for dynamic sites, ML for auto-style detection, or Arabic sentiment analysis.
+Suggestions: Integrate Selenium for Stories, or add ARIMA forecasting for trends.
 
 ## 📄 License
-MIT License — feel free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
+MIT License. See [LICENSE](LICENSE).
 
 ## 🙏 Acknowledgments
-- Inspired by Egyptian bridal fashion trends on Instagram.
-- Tools: Instaloader for scraping, NLTK for NLP, Matplotlib for viz.
+- Data inspired by Egyptian Instagram bridal creators.
+- Libraries: Instaloader (scraping), NLTK (NLP), Matplotlib (viz).
 
 ## 📞 Contact
 - **Portfolio**: [Ahmed El Sany's Portfolio](https://ahmedelsany29.github.io/my-portfolio/)
 - **CV**: [Download CV](https://drive.google.com/file/d/1m_8JJHyUvr9ifQ1F7hdhy1Sk-z-J_sb4/view?usp=drive_link)
-- **LinkedIn**: [Ahmed El Sany on LinkedIn](https://www.linkedin.com/in/ahmedelsany12)
-- **GitHub**: [@ahmedelsany29](https://github.com/ahmedelsany29)
-- **Email**: ahmedelsany29@gmail.com (or from LinkedIn)
-- Questions? Open an issue!
+- **LinkedIn**: [Ahmed El Sany](https://www.linkedin.com/in/ahmedelsany12)
 
 ---
 
-⭐ **Star this repo if it helps your fashion data project!**  
-Built with ❤️ for data-driven bridal insights.
+⭐ **Star if useful for your data/fashion projects!**  
+Made with ❤️ for insightful bridal trends. (Updated: Nov 2025)
