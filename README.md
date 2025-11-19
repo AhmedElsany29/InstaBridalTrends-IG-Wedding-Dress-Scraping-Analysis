@@ -57,10 +57,7 @@ scikit-learn>=1.3
 ## 📁 File Structure
 ```
 InstaBridalTrends-IG-Wedding-Dress-Scraping-Analysis/
-├── scrape_instagram.py          # Data collection
-├── analyze_wedding_data.py      # NLP + Viz
 ├── wedding_dress_analysis_FINAL.ipynb  # Jupyter demo
-├── sample_wedding_data.csv      # Test dataset
 ├── requirements.txt             # Dependencies
 ├── keyword_distribution_log_en.png  # Sample chart
 └── README.md                    # This file
